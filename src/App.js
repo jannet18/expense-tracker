@@ -6,9 +6,11 @@ import './App.css';
 import TransactionList from './components/TransactionList';
 import AddTransaction from './components/AddTransaction';
 import { GlobalProvider } from './context/GlobalState';
+import { AuthUserProvider } from './firebase/auth';
 
 function App() {
   return (
+    <AuthUserProvider>
    <GlobalProvider>
    <Header/>
    <div className='container'>
@@ -19,6 +21,7 @@ function App() {
 
    </div>
    </GlobalProvider>
+   </AuthUserProvider>
   );
 }
 
