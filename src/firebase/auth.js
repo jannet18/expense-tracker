@@ -1,8 +1,6 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
-import auth from './firebase';
-
-
+import { auth } from "./firebase";
 
 // reacts Context api - a way to share values between components without having
 // to explicitly pass props around from parent to child
@@ -19,7 +17,7 @@ export default function useFirebaseAuth() {
     const [authUser, setAuthUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const onAuthStateChanged = async (user) => {
+    const authStateChanged = async (user) => {
         setIsLoading(true);
         if(!user) {
             setAuthUser(null);
@@ -58,3 +56,5 @@ export function AuthUserProvider({children}) {
 }
 
 // add a custom hooh to access the current context value , helpful to access authuser and isLoading
+
+export const useAuth = () => useContext(AuthUserContext);
